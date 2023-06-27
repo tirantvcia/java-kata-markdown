@@ -25,8 +25,8 @@ public class PageRepository {
 		String anchorLine = generatedPageFeedReference.getAnchorLine();
 		if(generatedPageFeedReference.isHasPageFeedReference()) {
 			int position = findReferenceIntoReferenceLines(generatedPageFeedReference.getPageFeedReference());
-			String anchorToBePlaced = (!isReferenceInPageFeed(position))?ANCHOR_TEMPLATE.replace("X", String.valueOf(position + 1)):ANCHOR_TEMPLATE.replace("X", String.valueOf(referenceLines.size() + 1));
-			if(isReferenceInPageFeed(position)) {
+			String anchorToBePlaced = (isReferenceInPageFeed(position))?ANCHOR_TEMPLATE.replace("X", String.valueOf(position + 1)):ANCHOR_TEMPLATE.replace("X", String.valueOf(referenceLines.size() + 1));
+			if(!isReferenceInPageFeed(position)) {
 				referenceLines.add(anchorToBePlaced.concat(ANCHOR_REFERENCE_SEPARATION+generatedPageFeedReference.getPageFeedReference()));	
 			}
 			
@@ -41,7 +41,7 @@ public class PageRepository {
 	}
 
 	private boolean isReferenceInPageFeed(int position) {
-		return position == -1;
+		return position != -1;
 	}
 
 
