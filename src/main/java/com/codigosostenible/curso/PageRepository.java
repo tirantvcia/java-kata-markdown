@@ -23,12 +23,10 @@ public class PageRepository {
 	public void add(String text) {
 		MarkDownOuputProcess generatedPageFeedReference = markDownProcess.generatePageFeedReference(text);
 		String anchorLine = generatedPageFeedReference.getAnchorLine();
-		if(generatedPageFeedReference.getPageFeedReference() != null 
-				&& generatedPageFeedReference.getPageFeedReference().trim().length() > 0) {
-			
-			int position = IntStream.range(0, referenceLines.size()).filter(i -> matches(referenceLines.get(i), generatedPageFeedReference.getPageFeedReference())).findFirst().orElse(-1);
-			String anchorToBePlaced = (position != -1)?ANCHOR_TEMPLATE.replace("X", String.valueOf(position + 1)):ANCHOR_TEMPLATE.replace("X", String.valueOf(referenceLines.size() + 1));
-			if(position == -1) {
+		if(generatedPageFeedReference.isHasPageFeedReference()) {
+			int position = findReferenceIntoReferenceLines(generatedPageFeedReference);
+			String anchorToBePlaced = (!isReferenceInPageFeed(position))?ANCHOR_TEMPLATE.replace("X", String.valueOf(position + 1)):ANCHOR_TEMPLATE.replace("X", String.valueOf(referenceLines.size() + 1));
+			if(isReferenceInPageFeed(position)) {
 				referenceLines.add(anchorToBePlaced.concat(ANCHOR_REFERENCE_SEPARATION+generatedPageFeedReference.getPageFeedReference()));	
 			}
 			
@@ -36,6 +34,14 @@ public class PageRepository {
 		}
 		
 		this.outputLines.add(anchorLine);
+	}
+
+	private int findReferenceIntoReferenceLines(MarkDownOuputProcess generatedPageFeedReference) {
+		return IntStream.range(0, referenceLines.size()).filter(i -> matches(referenceLines.get(i), generatedPageFeedReference.getPageFeedReference())).findFirst().orElse(-1);
+	}
+
+	private boolean isReferenceInPageFeed(int position) {
+		return position == -1;
 	}
 
 
