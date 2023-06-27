@@ -1,30 +1,38 @@
 package com.codigosostenible.curso;
 
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TransformationMarkdownProcess {
-	
-	String regex = "(.*)(\\[.+\\])\\s*(\\(.+\\))";
-	
-	public MarkDownOuputProcess generatePageFeedReference(String text) {
-		Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-        String bookTitle = text;
-        String bookLink = "";
-        if (matcher.find()) {
-			bookTitle = matcher.group(1);
-	        bookLink = matcher.group(3).substring(1, matcher.group(3).length() - 1);
-        }
-		return new MarkDownOuputProcess(bookTitle.trim(), bookLink);
+
+	String bookTag = "[this book]";
+	String openingParenthesis = "(";
+	String closingParenthesis = ")";
+
+	public List<MarkDownOuputProcess> generatePageFeedReference(String text) {
+		List<MarkDownOuputProcess> listMarkDowns = new ArrayList<MarkDownOuputProcess>();
+		if (!isThereCompletMarkdown(text)) {
+			listMarkDowns.add(new MarkDownOuputProcess(text.trim(), ""));
+			return listMarkDowns;
+		}
+		while (isThereCompletMarkdown(text)) {
+			String anchorLine = text.substring(0, text.indexOf(bookTag));
+			String referenceLine = text.substring(text.indexOf(openingParenthesis) + 1,
+					text.indexOf(closingParenthesis));
+			listMarkDowns.add(new MarkDownOuputProcess(anchorLine.trim(), referenceLine.trim()));
+			text = text.substring(text.indexOf(closingParenthesis) + 1);
+		}
+		if (text != null && text.trim().length() > 0) {
+			listMarkDowns.add(new MarkDownOuputProcess(text.trim(), ""));
+		}
+		return listMarkDowns;
 	}
 
-	public boolean lineContainsMarkDownReference(String text) {
-		Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-        
-		return matcher.matches();
+	private boolean isThereCompletMarkdown(String text) {
+		return text.indexOf(bookTag) != -1 && text.indexOf(openingParenthesis) != -1
+				&& text.indexOf(closingParenthesis) != -1;
 	}
 
 }
