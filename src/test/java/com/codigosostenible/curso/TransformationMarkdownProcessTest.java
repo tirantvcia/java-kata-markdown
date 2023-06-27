@@ -42,13 +42,16 @@ class TransformationMarkdownProcessTest {
 	@Test
 	void testlineTextWithSomeMarkDown() {
 		MarkDownOuputProcess output1 = new MarkDownOuputProcess("algo por escribir.", "http://www.cadenaser.es/libro");
-		MarkDownOuputProcess output2 = new MarkDownOuputProcess("y esto otro", "http://www.cadenaser.es/libro");
-		List<MarkDownOuputProcess> asList = Arrays.asList(output1, output2);
+		MarkDownOuputProcess output2 = new MarkDownOuputProcess("y esto otro", "http://www.cadenaser.es/libros");
+		List<MarkDownOuputProcess> expected = Arrays.asList(output1, output2);
 		
 		TransformationMarkdownProcess process = new TransformationMarkdownProcess();
-		List<MarkDownOuputProcess> lineContainsMarkDownReference = process.generatePageFeedReference("algo por escribir.[this book] (http://www.cadenaser.es/libro) y esto otro [this book] (http://www.cadenaser.es/libro)");
-		assertEquals(2, lineContainsMarkDownReference.size());
-		
+		List<MarkDownOuputProcess> result = process.generatePageFeedReference("algo por escribir.[this book] (http://www.cadenaser.es/libro) y esto otro [this book] (http://www.cadenaser.es/libros)");
+		assertEquals(2, result.size());
+		assertEquals(expected.get(0).getAnchorLine(), result.get(0).getAnchorLine());
+		assertEquals(expected.get(0).getPageFeedReference(), result.get(0).getPageFeedReference());
+		assertEquals(expected.get(1).getAnchorLine(), result.get(1).getAnchorLine());
+		assertEquals(expected.get(1).getPageFeedReference(), result.get(1).getPageFeedReference());
 		
 	}
 	
