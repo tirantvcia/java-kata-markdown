@@ -2,11 +2,14 @@ package com.codigosostenible.curso.data;
 
 public class TestData {
 	
+	private static final String ANCHOR_THIRD_BOOK = "[^anchor3]";
+	private static final String ANCHOR_REFERENCE_SEPARATION = ": ";
 	public static final String ANCHOR_FIRST_BOOK = "[^anchor1]";
-	public static final String ANCHOR_FIRST_BOOK_REFERENCE = ANCHOR_FIRST_BOOK+": ";
+	public static final String ANCHOR_FIRST_BOOK_REFERENCE = ANCHOR_FIRST_BOOK+ANCHOR_REFERENCE_SEPARATION;
 	public static final String ANCHOR_TEMPLATE = "[^anchorx]";
 	public static final String ANCHOR_SECOND_BOOK = "[^anchor2]";
-	public static final String ANCHOR_SECOND_BOOK_REFERENCE = ANCHOR_SECOND_BOOK+": ";
+	public static final String ANCHOR_SECOND_BOOK_REFERENCE = ANCHOR_SECOND_BOOK+ANCHOR_REFERENCE_SEPARATION;
+	public static final String ANCHOR_THIRD_BOOK_REFERENCE = ANCHOR_THIRD_BOOK+ANCHOR_REFERENCE_SEPARATION;
 	
 	public static final String OUPUT_TITLE_SECOND_BOOK_WITHOUT_ANCHOR = "Libro 2: 'Aprendiendo TDD en Python' por Harry Percival.";
 	public static final String OUPUT_SECOND_BOOK_REFERENCE_WITHOUT_ANCHOR = "Percival, H. 20XX. Aprendiendo TDD en Python. Editorial XYZ";
@@ -32,9 +35,9 @@ public class TestData {
 	public static final String THIRD_BOOK_ABSTRACT = "El TDD es una práctica esencial para escribir código limpio y bien estructurado."
 			+ "Además, el ciclo TDD proporciona una retroalimentación rápida y constante, permitiendo a los desarrolladores realizar cambios con confianza.";
 	public static final String OUPUT_FIRST_BOOK_REFERENCE_WITHOUT_ANCHOR = "Crispin, L., & Gregory, J. 20XX. Pruebas Ágiles de Software. Editorial ABC.";
-	public static final String OUPUT_FIRST_BOOK_REFERENCE = ANCHOR_FIRST_BOOK + ": Crispin, L., & Gregory, J. 20XX. Pruebas Ágiles de Software. Editorial ABC.";
-	public static final String OUPUT_SECOND_BOOK_REFERENCE = "[^anchor2]: Percival, H. 20XX. Aprendiendo TDD en Python. Editorial XYZ";
-	public static final String OUPUT_THIRD_BOOK_REFERENCE = "[^anchor3]: Martin, R. C. 20XX. Clean Code: A Handbook of Agile Software Craftsmanship. Editorial DEF.";
+	public static final String OUPUT_FIRST_BOOK_REFERENCE = "Crispin, L., & Gregory, J. 20XX. Pruebas Ágiles de Software. Editorial ABC.";
+	public static final String OUPUT_SECOND_BOOK_REFERENCE = "Percival, H. 20XX. Aprendiendo TDD en Python. Editorial XYZ";
+	public static final String OUPUT_THIRD_BOOK_REFERENCE = "Martin, R. C. 20XX. Clean Code: A Handbook of Agile Software Craftsmanship. Editorial DEF.";
 	public static final String TEXT_LINE_WITH_TWO_MARKDOWN = "algo por escribir.[this book] (http://www.cadenaser.es/libro) y esto otro [this book] (http://www.cadenaser.es/libros)";
 
 	public static final String TEXT_LINE_WITH_TWO_MD_FIRST_ANCHOR = "algo por escribir.";

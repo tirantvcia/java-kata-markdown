@@ -25,7 +25,7 @@ public class PageServiceTest {
 		List<String> lines = repository.allLines();
 		assertEquals(2, lines.size());
     	assertEquals(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR.concat(TestData.ANCHOR_FIRST_BOOK), lines.get(0));
-    	assertEquals(TestData.OUPUT_FIRST_BOOK_REFERENCE, lines.get(1));
+    	assertEquals(TestData.ANCHOR_FIRST_BOOK_REFERENCE+TestData.OUPUT_FIRST_BOOK_REFERENCE, lines.get(1));
     	
 	}
 	@Test
@@ -56,7 +56,7 @@ public class PageServiceTest {
 		assertEquals(3, lines.size());
     	assertEquals(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR.concat(TestData.ANCHOR_FIRST_BOOK), lines.get(0));
     	assertEquals(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR.concat(TestData.ANCHOR_FIRST_BOOK), lines.get(1));
-    	assertEquals(TestData.OUPUT_FIRST_BOOK_REFERENCE, lines.get(2));
+    	assertEquals(TestData.ANCHOR_FIRST_BOOK_REFERENCE+TestData.OUPUT_FIRST_BOOK_REFERENCE, lines.get(2));
     	
 	}	
 	@Test
@@ -74,8 +74,8 @@ public class PageServiceTest {
 		assertEquals(4, lines.size());
     	assertEquals(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR.concat(TestData.ANCHOR_FIRST_BOOK), lines.get(0));
     	assertEquals(TestData.OUPUT_TITLE_SECOND_BOOK_WITHOUT_ANCHOR.concat(TestData.ANCHOR_SECOND_BOOK), lines.get(1));
-    	assertEquals(TestData.OUPUT_FIRST_BOOK_REFERENCE, lines.get(2));
-    	assertEquals(TestData.OUPUT_SECOND_BOOK_REFERENCE, lines.get(3));
+    	assertEquals(TestData.ANCHOR_FIRST_BOOK_REFERENCE+TestData.OUPUT_FIRST_BOOK_REFERENCE, lines.get(2));
+    	assertEquals(TestData.ANCHOR_SECOND_BOOK_REFERENCE+TestData.OUPUT_SECOND_BOOK_REFERENCE, lines.get(3));
 	}
 	@Test
 	void testlineTextWithSomeMarkDown() {

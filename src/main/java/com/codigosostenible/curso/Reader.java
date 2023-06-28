@@ -9,7 +9,7 @@ public class Reader {
 		this.paragrafDeposit = paragrafDeposit;
 	}
 
-	public void introParagraf(String text) {
+	public void introLine(String text) {
 		paragrafDeposit.add(text);
 		
 	}

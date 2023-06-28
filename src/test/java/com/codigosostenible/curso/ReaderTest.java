@@ -13,7 +13,7 @@ class ReaderTest {
 	void storesParagrafSourceIntoRepositoryBeforeTransformation() {
 		PageService paragrafDepositSpy = mock(PageService.class);
 		Reader reader = new Reader(paragrafDepositSpy);
-		reader.introParagraf(TestData.DOCUMENT_INTRODUCTION);
+		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
 		verify(paragrafDepositSpy).add(TestData.DOCUMENT_INTRODUCTION);
 	}
 //	@Test

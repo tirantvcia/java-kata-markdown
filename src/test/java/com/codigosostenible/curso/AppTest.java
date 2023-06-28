@@ -24,13 +24,13 @@ public class AppTest {
     	Reader reader = new Reader(pageRepository);
     	Writer writer = new Writer(pageRepository, new LinePrinter(consoleSpy));
     	
-		reader.introParagraf(TestData.DOCUMENT_INTRODUCTION);
-		reader.introParagraf(TestData.IN_TITLE_FIRST_BOOK);
-		reader.introParagraf(TestData.FIRST_BOOK_ABSTRACT);
-		reader.introParagraf(TestData.IN_TITLE_SECOND_BOOK);
-		reader.introParagraf(TestData.SECOND_BOOK_ABSTRACT);
-		reader.introParagraf(TestData.IN_TITLE_THIRD_BOOK);
-		reader.introParagraf(TestData.THIRD_BOOK_ABSTRACT);
+		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
+		reader.introLine(TestData.IN_TITLE_FIRST_BOOK);
+		reader.introLine(TestData.FIRST_BOOK_ABSTRACT);
+		reader.introLine(TestData.IN_TITLE_SECOND_BOOK);
+		reader.introLine(TestData.SECOND_BOOK_ABSTRACT);
+		reader.introLine(TestData.IN_TITLE_THIRD_BOOK);
+		reader.introLine(TestData.THIRD_BOOK_ABSTRACT);
 		
     	writer.printLines();
     	
@@ -43,11 +43,68 @@ public class AppTest {
     	assertEquals(TestData.SECOND_BOOK_ABSTRACT, paragraphCaptured.get(4));
     	assertEquals(TestData.OUPUT_TITLE_THIRD_BOOK, paragraphCaptured.get(5));
     	assertEquals(TestData.THIRD_BOOK_ABSTRACT, paragraphCaptured.get(6));
-    	assertEquals(TestData.OUPUT_FIRST_BOOK_REFERENCE, paragraphCaptured.get(7));
-    	assertEquals(TestData.OUPUT_SECOND_BOOK_REFERENCE, paragraphCaptured.get(8));
-    	assertEquals(TestData.OUPUT_THIRD_BOOK_REFERENCE, paragraphCaptured.get(9));
+    	assertEquals(TestData.ANCHOR_FIRST_BOOK_REFERENCE+TestData.OUPUT_FIRST_BOOK_REFERENCE, paragraphCaptured.get(7));
+    	assertEquals(TestData.ANCHOR_SECOND_BOOK_REFERENCE+TestData.OUPUT_SECOND_BOOK_REFERENCE, paragraphCaptured.get(8));
+    	assertEquals(TestData.ANCHOR_THIRD_BOOK_REFERENCE+TestData.OUPUT_THIRD_BOOK_REFERENCE, paragraphCaptured.get(9));
     	
 
     }
+	
+	
+//	@Test
+//    public void printsSeveralPagesWithReferencesAtLeast() {
+//
+//		ArgumentCaptor<String> paragraphCaptor = ArgumentCaptor.forClass(String.class);
+//    	Console consoleSpy = mock(Console.class);
+//    	
+//		PageService pageRepository = new PageService(new TransformationMarkdownProcess());
+//    	Reader reader = new Reader(pageRepository);
+//    	Writer writer = new Writer(pageRepository, new LinePrinter(consoleSpy));
+//    	
+//		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
+//		reader.introLine(TestData.IN_TITLE_FIRST_BOOK);
+//		reader.introLine(TestData.FIRST_BOOK_ABSTRACT);
+//		reader.introLine(TestData.IN_TITLE_SECOND_BOOK);
+//		reader.introLine(TestData.SECOND_BOOK_ABSTRACT);
+//		reader.introLine(TestData.IN_TITLE_THIRD_BOOK);
+//		reader.introLine(TestData.THIRD_BOOK_ABSTRACT);
+//
+//		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
+//		reader.introLine(TestData.IN_TITLE_FIRST_BOOK);
+//		reader.introLine(TestData.FIRST_BOOK_ABSTRACT);
+//		reader.introLine(TestData.IN_TITLE_SECOND_BOOK);
+//		reader.introLine(TestData.SECOND_BOOK_ABSTRACT);
+//		reader.introLine(TestData.IN_TITLE_THIRD_BOOK);
+//		reader.introLine(TestData.THIRD_BOOK_ABSTRACT);
+//
+//		
+//    	writer.printLines();
+//    	
+//		verify(consoleSpy, times(20)).log(paragraphCaptor.capture());
+//    	List<String> paragraphCaptured = paragraphCaptor.getAllValues();
+//    	assertEquals(TestData.DOCUMENT_INTRODUCTION, paragraphCaptured.get(0));
+//    	assertEquals(TestData.OUPUT_TITLE_FIRST_BOOK, paragraphCaptured.get(1));
+//    	assertEquals(TestData.FIRST_BOOK_ABSTRACT, paragraphCaptured.get(2));
+//    	assertEquals(TestData.OUPUT_TITLE_SECOND_BOOK, paragraphCaptured.get(3));
+//    	assertEquals(TestData.SECOND_BOOK_ABSTRACT, paragraphCaptured.get(4));
+//    	assertEquals(TestData.OUPUT_TITLE_THIRD_BOOK, paragraphCaptured.get(5));
+//    	assertEquals(TestData.THIRD_BOOK_ABSTRACT, paragraphCaptured.get(6));
+//    	assertEquals(TestData.OUPUT_FIRST_BOOK_REFERENCE, paragraphCaptured.get(7));
+//    	assertEquals(TestData.OUPUT_SECOND_BOOK_REFERENCE, paragraphCaptured.get(8));
+//    	assertEquals(TestData.OUPUT_THIRD_BOOK_REFERENCE, paragraphCaptured.get(9));
+//		verify(consoleSpy, times(10)).log(paragraphCaptor.capture());
+//
+//    	assertEquals(TestData.DOCUMENT_INTRODUCTION, paragraphCaptured.get(0));
+//    	assertEquals(TestData.OUPUT_TITLE_FIRST_BOOK, paragraphCaptured.get(1));
+//    	assertEquals(TestData.FIRST_BOOK_ABSTRACT, paragraphCaptured.get(2));
+//    	assertEquals(TestData.OUPUT_TITLE_SECOND_BOOK, paragraphCaptured.get(3));
+//    	assertEquals(TestData.SECOND_BOOK_ABSTRACT, paragraphCaptured.get(4));
+//    	assertEquals(TestData.OUPUT_TITLE_THIRD_BOOK, paragraphCaptured.get(5));
+//    	assertEquals(TestData.THIRD_BOOK_ABSTRACT, paragraphCaptured.get(6));
+//    	assertEquals(TestData.OUPUT_FIRST_BOOK_REFERENCE, paragraphCaptured.get(7));
+//    	assertEquals(TestData.OUPUT_SECOND_BOOK_REFERENCE, paragraphCaptured.get(8));
+//    	assertEquals(TestData.OUPUT_THIRD_BOOK_REFERENCE, paragraphCaptured.get(9)); 	
+//
+//    }
 
 }
