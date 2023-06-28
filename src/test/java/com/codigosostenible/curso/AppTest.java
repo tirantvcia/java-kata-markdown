@@ -19,10 +19,10 @@ public class AppTest {
 
 		ArgumentCaptor<String> paragraphCaptor = ArgumentCaptor.forClass(String.class);
     	Console consoleSpy = mock(Console.class);
-    	
-		PageService pageRepository = new PageService(new TransformationMarkdownProcess());
-    	Reader reader = new Reader(pageRepository);
-    	Writer writer = new Writer(pageRepository, new LinePrinter(consoleSpy));
+    	PageRepositoryData repository = new PageRepositoryData();
+		PageService pageService = new PageService(new TransformationMarkdownProcess(), repository);
+    	Reader reader = new Reader(pageService);
+    	Writer writer = new Writer(pageService, new LinePrinter(consoleSpy));
     	
 		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
 		reader.introLine(TestData.IN_TITLE_FIRST_BOOK);

@@ -10,12 +10,13 @@ public class PageService {
 	private static final String ANCHOR_REFERENCE_SEPARATION = ": ";
 	private static String ANCHOR_TEMPLATE = "[^anchorX]";
 	TransformationMarkdownProcess markDownProcess;
-	PageRepositoryData data = new PageRepositoryData();
+	PageRepositoryData repository;
 
 
 
-	public PageService(TransformationMarkdownProcess markDownProcess) {
+	public PageService(TransformationMarkdownProcess markDownProcess, PageRepositoryData repository) {
 		this.markDownProcess = markDownProcess;
+		this.repository = repository;
 
 	}
 
@@ -27,9 +28,9 @@ public class PageService {
 			String anchorToBePlaced = "";
 			if(generatedPageFeedReference.get(i).isHasPageFeedReference()) {
 				int position = findReferenceIntoReferenceLines(generatedPageFeedReference.get(i).getPageFeedReference());
-				anchorToBePlaced = (isReferenceInPageFeed(position))?ANCHOR_TEMPLATE.replace("X", String.valueOf(position + 1)):ANCHOR_TEMPLATE.replace("X", String.valueOf(data.referenceLines.size() + 1));
+				anchorToBePlaced = (isReferenceInPageFeed(position))?ANCHOR_TEMPLATE.replace("X", String.valueOf(position + 1)):ANCHOR_TEMPLATE.replace("X", String.valueOf(repository.referenceLines.size() + 1));
 				if(!isReferenceInPageFeed(position)) {
-					data.referenceLines.add(anchorToBePlaced.concat(ANCHOR_REFERENCE_SEPARATION+generatedPageFeedReference.get(i).getPageFeedReference()));	
+					repository.referenceLines.add(anchorToBePlaced.concat(ANCHOR_REFERENCE_SEPARATION+generatedPageFeedReference.get(i).getPageFeedReference()));	
 				}
 				
 				
@@ -38,11 +39,11 @@ public class PageService {
 			
 			
 		}
-		this.data.outputLines.add(outputLineWithAllMarkDownResults.toString());
+		this.repository.outputLines.add(outputLineWithAllMarkDownResults.toString());
 	}
 
 	private int findReferenceIntoReferenceLines(String pageFeedReference) {
-		return IntStream.range(0, data.referenceLines.size()).filter(i -> matches(data.referenceLines.get(i), pageFeedReference)).findFirst().orElse(-1);
+		return IntStream.range(0, repository.referenceLines.size()).filter(i -> matches(repository.referenceLines.get(i), pageFeedReference)).findFirst().orElse(-1);
 	}
 
 	private boolean isReferenceInPageFeed(int position) {
@@ -57,8 +58,8 @@ public class PageService {
 
 	public List<String> allLines() {
 		List<String> lines = new ArrayList<>();
-		lines.addAll(data.outputLines);
-		lines.addAll(data.referenceLines);
+		lines.addAll(repository.outputLines);
+		lines.addAll(repository.referenceLines);
 		return lines;
 	
 	}
