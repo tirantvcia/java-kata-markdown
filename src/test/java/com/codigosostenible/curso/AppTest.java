@@ -20,7 +20,7 @@ public class AppTest {
 		ArgumentCaptor<String> paragraphCaptor = ArgumentCaptor.forClass(String.class);
     	Console consoleSpy = mock(Console.class);
     	
-		PageRepository pageRepository = new PageRepository(new TransformationMarkdownProcess());
+		PageService pageRepository = new PageService(new TransformationMarkdownProcess());
     	Reader reader = new Reader(pageRepository);
     	Writer writer = new Writer(pageRepository, new LinePrinter(consoleSpy));
     	

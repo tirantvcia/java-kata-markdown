@@ -3,9 +3,9 @@ package com.codigosostenible.curso;
 
 public class Reader {
 	
-	PageRepository paragrafDeposit;
+	PageService paragrafDeposit;
 
-	public Reader(PageRepository paragrafDeposit) {
+	public Reader(PageService paragrafDeposit) {
 		this.paragrafDeposit = paragrafDeposit;
 	}
 

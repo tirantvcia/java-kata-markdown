@@ -11,7 +11,7 @@ class ReaderTest {
 
 	@Test
 	void storesParagrafSourceIntoRepositoryBeforeTransformation() {
-		PageRepository paragrafDepositSpy = mock(PageRepository.class);
+		PageService paragrafDepositSpy = mock(PageService.class);
 		Reader reader = new Reader(paragrafDepositSpy);
 		reader.introParagraf(TestData.DOCUMENT_INTRODUCTION);
 		verify(paragrafDepositSpy).add(TestData.DOCUMENT_INTRODUCTION);

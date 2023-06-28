@@ -17,7 +17,7 @@ public class WriterTest {
 	void printsStatementThroughtStatementPrinter() {
 		
 		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR, TestData.OUPUT_FIRST_BOOK_REFERENCE);
-		PageRepository repository = mock(PageRepository.class);
+		PageService repository = mock(PageService.class);
 		when(repository.allLines()).thenReturn(lines);
 		LinePrinter linePinterSpy = mock(LinePrinter.class);
 		Writer writer = new Writer(repository, linePinterSpy);

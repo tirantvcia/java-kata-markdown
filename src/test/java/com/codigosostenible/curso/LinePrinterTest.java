@@ -17,7 +17,7 @@ class LinePrinterTest {
 	@Test
 	void printOuputLinesFromOneLineInRepository() {
 		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
-		PageRepository repository = mock(PageRepository.class);
+		PageService repository = mock(PageService.class);
 		Console consoleSpy = mock(Console.class);
 		when(repository.allLines()).thenReturn(lines);
 		LinePrinter linePrinter = new LinePrinter(consoleSpy);
@@ -30,7 +30,7 @@ class LinePrinterTest {
 	@Test
 	void printOuputMarkDownInRepository() {
 		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR, TestData.OUPUT_FIRST_BOOK_REFERENCE);
-		PageRepository repository = mock(PageRepository.class);
+		PageService repository = mock(PageService.class);
 		Console consoleSpy = mock(Console.class);
 		when(repository.allLines()).thenReturn(lines);
 		LinePrinter linePrinter = new LinePrinter(consoleSpy);
