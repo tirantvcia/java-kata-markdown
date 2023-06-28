@@ -20,7 +20,7 @@ public class PageService {
 
 	public void add(String text) {
 		List<MarkDownOuputProcess> generatedPageFeedReference = markDownProcess.generatePageFeedReference(text);
-		StringBuilder anchorLine = new StringBuilder();
+		StringBuilder outputLineWithAllMarkDownResults = new StringBuilder();
 		
 		for(int i = 0; i < generatedPageFeedReference.size(); i++) {
 			String anchorToBePlaced = "";
@@ -33,11 +33,11 @@ public class PageService {
 				
 				
 			}
-			anchorLine.append(generatedPageFeedReference.get(i).getAnchorLine().concat(anchorToBePlaced));
+			outputLineWithAllMarkDownResults.append(generatedPageFeedReference.get(i).getAnchorLine().concat(anchorToBePlaced));
 			
 			
 		}
-		this.data.outputLines.add(anchorLine.toString());
+		this.data.outputLines.add(outputLineWithAllMarkDownResults.toString());
 	}
 
 	private int findReferenceIntoReferenceLines(String pageFeedReference) {

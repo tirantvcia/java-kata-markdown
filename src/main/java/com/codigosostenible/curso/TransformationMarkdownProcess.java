@@ -32,7 +32,7 @@ public class TransformationMarkdownProcess {
 
 	private boolean isThereCompletMarkdown(String text) {
 		return text.indexOf(bookTag) != -1 && text.indexOf(openingParenthesis) != -1
-				&& text.indexOf(closingParenthesis) != -1;
+				&& text.indexOf(closingParenthesis) != -1 && text.indexOf(openingParenthesis) > text.indexOf(bookTag) && text.indexOf(closingParenthesis) > text.indexOf(openingParenthesis);
 	}
 
 }
