@@ -42,7 +42,7 @@ class TransformationMarkdownProcessTest {
 	@Test
 	void testlineTextWithSomeMarkDown() {
 		MarkDownOuputProcess output1 = new MarkDownOuputProcess("algo por escribir.", "http://www.cadenaser.es/libro");
-		MarkDownOuputProcess output2 = new MarkDownOuputProcess("y esto otro", "http://www.cadenaser.es/libros");
+		MarkDownOuputProcess output2 = new MarkDownOuputProcess(" y esto otro ", "http://www.cadenaser.es/libros");
 		List<MarkDownOuputProcess> expected = Arrays.asList(output1, output2);
 		
 		TransformationMarkdownProcess process = new TransformationMarkdownProcess();

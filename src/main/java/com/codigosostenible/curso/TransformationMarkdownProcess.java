@@ -21,7 +21,7 @@ public class TransformationMarkdownProcess {
 			String anchorLine = text.substring(0, text.indexOf(bookTag));
 			String referenceLine = text.substring(text.indexOf(openingParenthesis) + 1,
 					text.indexOf(closingParenthesis));
-			listMarkDowns.add(new MarkDownOuputProcess(anchorLine.trim(), referenceLine.trim()));
+			listMarkDowns.add(new MarkDownOuputProcess(anchorLine, referenceLine));
 			text = text.substring(text.indexOf(closingParenthesis) + 1);
 		}
 		if (text != null && text.trim().length() > 0) {
