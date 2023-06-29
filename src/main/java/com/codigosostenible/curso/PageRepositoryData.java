@@ -52,10 +52,11 @@ public class PageRepositoryData {
 		return referenceLine.contains(pageFeedReference);
 	}
 
-	public List<MarkDownOuputProcess> findAll() {
-		return null;
-		// TODO Auto-generated method stub
-
+	public List<String> findAll() {
+		List<String> lines = new ArrayList<>();
+		lines.addAll(outputLines);
+		lines.addAll(referenceLines);
+		return lines;
 	}
 
 }

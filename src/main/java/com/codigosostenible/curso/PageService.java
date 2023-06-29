@@ -28,11 +28,7 @@ public class PageService {
 
 
 	public List<String> allLines() {
-		List<String> lines = new ArrayList<>();
-		lines.addAll(repository.outputLines);
-		lines.addAll(repository.referenceLines);
-		return lines;
-	
+		return repository.findAll();
 	}
 
 }
