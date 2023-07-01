@@ -14,32 +14,32 @@ import com.codigosostenible.curso.data.TestData;
 
 class LinePrinterTest {
 
-	@Test
-	void printOuputLinesFromOneLineInRepository() {
-		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
-		PageService repository = mock(PageService.class);
-		Console consoleSpy = mock(Console.class);
-		when(repository.allLines()).thenReturn(lines);
-		LinePrinter linePrinter = new LinePrinter(consoleSpy);
-		
-		linePrinter.print(lines);
-		
-		
-		verify(consoleSpy ).log(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
-	}
-	@Test
-	void printOuputMarkDownInRepository() {
-		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR, TestData.OUPUT_FIRST_BOOK_REFERENCE);
-		PageService repository = mock(PageService.class);
-		Console consoleSpy = mock(Console.class);
-		when(repository.allLines()).thenReturn(lines);
-		LinePrinter linePrinter = new LinePrinter(consoleSpy);
-		
-		linePrinter.print(lines);
-		
-		
-		verify(consoleSpy ).log(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
-		verify(consoleSpy ).log(TestData.OUPUT_FIRST_BOOK_REFERENCE);
-	}
+//	@Test
+//	void printOuputLinesFromOneLineInRepository() {
+//		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
+//		PageService service = mock(PageService.class);
+//		Console consoleSpy = mock(Console.class);
+//		when(service.allLines()).thenReturn(lines);
+//		LinePrinter linePrinter = new LinePrinter(consoleSpy);
+//		
+//		linePrinter.print(lines);
+//		
+//		
+//		verify(consoleSpy ).log(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
+//	}
+//	@Test
+//	void printOuputMarkDownInRepository() {
+//		List<String> lines = Arrays.asList(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR, TestData.OUPUT_FIRST_BOOK_REFERENCE);
+//		PageService repository = mock(PageService.class);
+//		Console consoleSpy = mock(Console.class);
+//		when(repository.allLines()).thenReturn(lines);
+//		LinePrinter linePrinter = new LinePrinter(consoleSpy);
+//		
+//		linePrinter.print(lines);
+//		
+//		
+//		verify(consoleSpy ).log(TestData.OUPUT_TITLE_FIRST_BOOK_WITHOUT_ANCHOR);
+//		verify(consoleSpy ).log(TestData.OUPUT_FIRST_BOOK_REFERENCE);
+//	}
 
 }

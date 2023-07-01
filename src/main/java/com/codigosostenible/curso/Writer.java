@@ -3,10 +3,10 @@ package com.codigosostenible.curso;
 
 public class Writer {
 
-	PageService repository;
+	BookRepository repository;
 	LinePrinter linePinter;
 	
-	public Writer(PageService repository, LinePrinter linePinter) {
+	public Writer(BookRepository repository, LinePrinter linePinter) {
 		this.repository = repository;
 		this.linePinter = linePinter;
 	}

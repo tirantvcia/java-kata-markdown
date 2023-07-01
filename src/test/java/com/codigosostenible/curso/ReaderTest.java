@@ -1,7 +1,7 @@
 package com.codigosostenible.curso;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +12,34 @@ class ReaderTest {
 	@Test
 	void storesParagrafSourceIntoRepositoryBeforeTransformation() {
 		PageService paragrafDepositSpy = mock(PageService.class);
-		Reader reader = new Reader(paragrafDepositSpy);
+		BookRepository bookRepository = new BookRepository();
+		Reader reader = new Reader(paragrafDepositSpy, bookRepository);
 		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
 		verify(paragrafDepositSpy).add(TestData.DOCUMENT_INTRODUCTION);
 	}
-//	@Test
-//	void processTransformationParagrafSourceBeforeStoresIntoRepository() {
-//		ParagrafDeposit paragrafDepositSpy = mock(ParagrafDeposit.class);
-//		TransformationMarkdownProcess process = mock(TransformationMarkdownProcess.class);
-//		Reader reader = new Reader(paragrafDepositSpy, process);
-//		MarkDownOuputProcess markDown = new MarkDownOuputProcess();
-//		markDown.setAnchorLine(TestData.OUPUT_TITLE_FIRST_BOOK);
-//		markDown.setPageFeedReference(TestData.OUPUT_FIRST_BOOK_REFERENCE);
-//		when(process.generatePageFeedReference(TestData.IN_TITLE_FIRST_BOOK)).thenReturn(markDown);
-//		reader.introParagraf(TestData.DOCUMENT_INTRODUCTION);
-//		verify(paragrafDepositSpy).add(TestData.DOCUMENT_INTRODUCTION);
-//	}
+
+	@Test
+	public void testAddNewPageInBookRepositoryForEveryNewPage() {
+
+		Console consoleSpy = mock(Console.class);
+		
+		BookRepository bookRepository = new BookRepository();
+		PageRepositoryData repository = new PageRepositoryData();
+		PageService pageService = new PageService(new TransformationMarkdownProcess(), repository);
+		Reader reader = new Reader(pageService, bookRepository);
+
+		reader.introLine(TestData.IN_TITLE_FIRST_BOOK);
+		reader.introLine(TestData.FIRST_BOOK_ABSTRACT);
+		reader.introLine(TestData.NEW_PAGE);
+		reader.introLine(TestData.IN_TITLE_SECOND_BOOK);
+		reader.introLine(TestData.SECOND_BOOK_ABSTRACT);
+		reader.introLine(TestData.NEW_PAGE);
+		reader.introLine(TestData.IN_TITLE_THIRD_BOOK);
+		reader.introLine(TestData.THIRD_BOOK_ABSTRACT);
+		reader.introLine(TestData.NEW_PAGE);
+		
+		assertEquals(3, bookRepository.pagesRepo.size());
+
+
+	}
 }

@@ -1,7 +1,6 @@
 package com.codigosostenible.curso;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PageService {
@@ -19,16 +18,13 @@ public class PageService {
 
 	public void add(String sourceLine) {
 		List<MarkDownOuputProcess> generatedPageFeedReference = markDownProcess.generatePageFeedReference(sourceLine);
-		
 		repository.save(generatedPageFeedReference);
-		
-
-		
 	}
 
 
-	public List<String> allLines() {
-		return repository.findAll();
+
+	public void setRepository(PageRepositoryData repository) {
+		this.repository = repository;
 	}
 
 }

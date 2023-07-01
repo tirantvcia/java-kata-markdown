@@ -21,8 +21,9 @@ public class AppTest {
     	Console consoleSpy = mock(Console.class);
     	PageRepositoryData repository = new PageRepositoryData();
 		PageService pageService = new PageService(new TransformationMarkdownProcess(), repository);
-    	Reader reader = new Reader(pageService);
-    	Writer writer = new Writer(pageService, new LinePrinter(consoleSpy));
+		BookRepository bookRepository = new BookRepository();
+    	Reader reader = new Reader(pageService, bookRepository);
+    	Writer writer = new Writer(bookRepository, new LinePrinter(consoleSpy));
     	
 		reader.introLine(TestData.DOCUMENT_INTRODUCTION);
 		reader.introLine(TestData.IN_TITLE_FIRST_BOOK);
@@ -31,6 +32,7 @@ public class AppTest {
 		reader.introLine(TestData.SECOND_BOOK_ABSTRACT);
 		reader.introLine(TestData.IN_TITLE_THIRD_BOOK);
 		reader.introLine(TestData.THIRD_BOOK_ABSTRACT);
+		reader.introLine(TestData.NEW_PAGE);
 		
     	writer.printLines();
     	
