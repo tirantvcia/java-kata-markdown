@@ -45,5 +45,6 @@ public class TestData {
 	public static final String TEXT_LINE_WITH_TWO_MD_SECOND_ANCHOR = "y esto otro";
 	public static final String TEXT_LINE_WITH_TWO_MD_SECOND_REFERENCE = "http://www.cadenaser.es/libros";
 	public static final String NEW_PAGE = "012";
+	public static final String NEW_CHAPTER = "022";
 
 }

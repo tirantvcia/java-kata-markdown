@@ -7,18 +7,19 @@ public class PageRepositoryData {
 
 	private static final String ANCHOR_REFERENCE_SEPARATION = ": ";
 	private static String ANCHOR_TEMPLATE = "[^anchorX]";
-	public List<String> outputLines;
-	public List<String> referenceLines;
-	int chpaterReferenceNumber;
+	private List<String> outputLines;
+	private List<String> referenceLines;
+	private int chapterReferenceNumber;
 	
-	public PageRepositoryData(int chpaterReferenceNumber) {
+	public PageRepositoryData(int chapterReferenceNumber) {
 		this.outputLines = new ArrayList<>();
 		this.referenceLines = new ArrayList<>();
-		this.chpaterReferenceNumber = chpaterReferenceNumber;
+		this.chapterReferenceNumber = chapterReferenceNumber;
 		
 	}
 	
 	public PageRepositoryData() {
+		this.chapterReferenceNumber = 0;
 		this.outputLines = new ArrayList<>();
 		this.referenceLines = new ArrayList<>();
 	}
@@ -42,7 +43,7 @@ public class PageRepositoryData {
 	}
 
 	private String getsAnchorReferenceToBePlace(String sameRferenceAppearedBefore) {
-		return (sameRferenceAppearedBefore != null)? sameRferenceAppearedBefore.substring(0, sameRferenceAppearedBefore.indexOf(":")):ANCHOR_TEMPLATE.replace("X", String.valueOf(referenceLines.size() + 1));
+		return (sameRferenceAppearedBefore != null)? sameRferenceAppearedBefore.substring(0, sameRferenceAppearedBefore.indexOf(":")):ANCHOR_TEMPLATE.replace("X", String.valueOf(++chapterReferenceNumber));
 	}
 
 
@@ -56,6 +57,10 @@ public class PageRepositoryData {
 		lines.addAll(outputLines);
 		lines.addAll(referenceLines);
 		return lines;
+	}
+
+	public int getChapterReferenceNumber() {
+		return chapterReferenceNumber;
 	}
 
 }
